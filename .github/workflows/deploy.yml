@@ -16,7 +16,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PUBLIC_IP }} #this is an ec2 public ip
-          username: ubuntu
+          username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Update package index and install dependencies
