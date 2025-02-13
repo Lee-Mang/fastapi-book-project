@@ -2,22 +2,22 @@ name: CI Pipeline
 on:
   pull_request:
     branches:
-      - main
-     # Trigger on pull request to `main`
+      - main  # Run the workflow when a PR is opened against `main`
 jobs:
   test:
-    runs-on: ubuntu-latest  # GitHub-hosted runner
+    runs-on: ubuntu-latest  # Run the tests on Ubuntu
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Fetch the code from GitHub
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.10'  # Use Python 3.10
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest  # Install pytest
       - name: Run tests
         run: |
-          pytest
+          pytest  # Run the test suite
